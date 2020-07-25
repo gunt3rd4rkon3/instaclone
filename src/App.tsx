@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route, BrowserRouter} from 'react-router-dom'
 import './App.css';
+import Login from './containers/Auth/Login'
+import Register from './containers/Auth/Register'
+import NewsFeed from './containers/NewsFeed'
+import NavBar from './components/NavBar'
+import Profile from './containers/Profile'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+class App extends React.Component {
+  render(){
+    return (
+      <BrowserRouter>
+        <Route exact path='/' component={Login}/>
+        <Route exact path='/register' component={Register}/>
+        <Route path='/app' component={NavBar}/>
+        <Route exact path='/app/newsfeed' component={NewsFeed}/>
+        <Route exact path='/app/profile' component={Profile}/>
+      </BrowserRouter>
   );
+}
 }
 
 export default App;
