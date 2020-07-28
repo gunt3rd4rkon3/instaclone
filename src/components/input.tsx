@@ -21,11 +21,11 @@ interface IInputProps {
 }
 //componente sin estado no puede acceder a los ciclos de vida
 const Input: React.StatelessComponent<WrappedFieldProps & IInputProps> = props => {
-    const {label} = props
+    const {label, input} = props
     return (
         <div>
             <span style={spanStyle}>{label}</span>
-            <input {...props} style={style}/>
+            <input{...input} {...props} style={style}/>
         </div>
     )
 }

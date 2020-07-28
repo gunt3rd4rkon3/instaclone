@@ -9,18 +9,19 @@ import Title from '../../components/Title'
 import {ILogin, login as loginThunk} from '../../ducks/Users'
 
 interface ILoginProps {
-    login: (a: {ILogin}) => void
+    login: (a: ILogin) => void
 }
 class Login extends React.Component<ILoginProps>{
     public render(){
         const {login} = this.props
+        //console.log(login)
         return(
-        <Container center={true}>
-            <Card>
-                <Title>Iniciar Sesión</Title>
-                <LoginForm onSubmit={login}/>
-            </Card>
-        </Container>
+            <Container center={true}>
+                <Card>
+                    <Title>Iniciar Sesión</Title>
+                    <LoginForm onSubmit={login} /> 
+                </Card>
+            </Container>
         )
     }
 }
