@@ -19,7 +19,7 @@ class Login extends React.Component<ILoginProps>{
             <Container center={true}>
                 <Card>
                     <Title>Iniciar Sesión</Title>
-                    <LoginForm onSubmit={login} /> 
+                    <LoginForm onSubmit={login} />
                 </Card>
             </Container>
         )

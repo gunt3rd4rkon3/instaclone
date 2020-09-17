@@ -25,7 +25,7 @@ const Input: React.StatelessComponent<WrappedFieldProps & IInputProps> = props =
     return (
         <div>
             <span style={spanStyle}>{label}</span>
-            <input{...input} {...props} style={style}/>
+            <input {...input}  style={style}/>
         </div>
     )
 }
