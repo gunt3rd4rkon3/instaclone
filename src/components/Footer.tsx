@@ -13,14 +13,20 @@ const styles = {
     button: {
         flex: '1',
         textAlign: 'center',
-        cursor: 'pointer'}
+        cursor: 'pointer'},
+        padding: '10px 15px'
 }
-export default class Footer extends React.Component{
+interface IFooterProps{
+    like: () => void
+    share: () => void
+}
+export default class Footer extends React.Component<IFooterProps>{
     render(){
+        const {like, share} = this.props
         return (
             <div style={styles.footer as React.CSSProperties}>
-            <div style={styles.button as React.CSSProperties}><FontAwesomeIcon icon={faThumbsUp} /> Like</div>
-            <div style={styles.button as React.CSSProperties}><FontAwesomeIcon icon={faRetweet}/> Compartir</div>
+            <div onClick={like} style={styles.button as React.CSSProperties}><FontAwesomeIcon icon={faThumbsUp} /> Like</div>
+            <div onClick={share} style={styles.button as React.CSSProperties}><FontAwesomeIcon icon={faRetweet}/> Compartir</div>
         </div>
         )
     }

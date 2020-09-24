@@ -62,16 +62,41 @@ export default function reducer(state = initialState, action: AnyAction) {
 }
 
 export const fetchPosts = () =>
-    async (dispatch: Dispatch, getState: () => any, {db}: IServices) => {
+    async (dispatch: Dispatch, getState: () => any, {db, storage}: IServices) => {
         dispatch(fetchStart())
         try{
             const snaps =  await db.collection('posts').get()
-            const posts = {}
+            const posts:any = {}
             snaps.forEach(x => {
-                posts[x.id] = String(x.data())
+                const key = x.id
+                posts[key] = x.data()
+            })
+            const imgIds = await Promise.all(Object.keys(posts)
+                .map(async x => {
+                    const ref = storage.ref(`post/${x}.jpg`)
+                    const url = await ref.getDownloadURL()
+                    return [x, url]
+                })
+            )
+            const keyedImages:any = {}
+            imgIds.forEach(x => keyedImages[x[0]] = x[1])
+            Object.keys(posts).forEach(x => posts[x] = {
+                ...posts[x],
+                imageURL: keyedImages[x],
             })
             dispatch(fetchSucces(posts))
         } catch (e) {
+            console.log(e)
             dispatch(fetchError(e))
         }
+    }
+
+export const like = (id: String) => 
+    async (dispatch: Dispatch, getState: () => any, {}: IServices) => {
+        console.log(id)
+
+    }
+export const share = (id: String) => 
+    async (dispatch: Dispatch, getState: () => any, {}: IServices) => {
+        console.log(id)
     }
